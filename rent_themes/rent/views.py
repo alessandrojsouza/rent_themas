@@ -1,8 +1,4 @@
-from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.urls import reverse
-#from django.http import HttpResponse
-
 from .models import Client
 # Create your views here.
 
