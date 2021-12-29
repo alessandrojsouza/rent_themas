@@ -1,0 +1,22 @@
+{% extends "index.html" %} 
+    {% block content %}
+    <p></p>
+        <h1>Lista de Temas</h1>
+        <hr>
+        <table>
+            {% if theme_list %}
+                {% for theme in theme_list%}
+                    <tr>
+                        <td width='15'>{{theme.id}}</td>
+                        <td width='170'>{{theme.name}}</td>
+                        <td width='70'><a href="/deleteTheme/{{theme.id}}">Excluir</a></td>
+                        <td><a href="/detailTheme/{{theme.id}}">Editar</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum tema cadastrado!!</p>
+            {%endif%}
+        </table>
+        <hr>
+        <a href="/formTheme">Novo Tema</a>
+    {% endblock %}

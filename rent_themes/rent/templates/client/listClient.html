@@ -1,0 +1,22 @@
+{% extends "index.html" %} 
+    {% block content %}
+    <p></p>
+        <h1>Lista de Clientes</h1>
+        <hr>
+        <table>
+            {% if clients_list %}
+                {% for client in clients_list%}
+                    <tr>
+                        <td width='15'>{{client.id}}</td>
+                        <td width='170'>{{client.name}}</td>
+                        <td width='70'><a href="/deleteClient/{{client.id}}">Excluir</a></td>
+                        <td><a href="/detailClient/{{client.id}}">Editar</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum cliente cadastrado!!</p>
+            {%endif%}
+        </table>
+        <hr>
+        <a href="/formClient">Novo Cliente</a>
+    {% endblock %}

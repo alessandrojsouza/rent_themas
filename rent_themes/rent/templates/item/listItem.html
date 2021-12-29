@@ -1,0 +1,23 @@
+{% extends "index.html" %} 
+    {% block content %}
+    <p></p>
+        <h1>Lista de Itens</h1>
+        <hr>
+        <table>
+            {% if item_list %}
+                {% for item in item_list%}
+                    <tr>
+                        <td width='15'>{{item.id}}</td>
+                        <td width='170'>{{item.name}}</td>
+                        <td width='170'>{{item.description}}</td>
+                        <td width='70'><a href="/deleteItem/{{item.id}}">Excluir</a></td>
+                        <td><a href="/detailItem/{{item.id}}">Editar</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum item cadastrado!!</p>
+            {%endif%}
+        </table>
+        <hr>
+        <a href="/formItem">Novo Item</a>
+    {% endblock %}

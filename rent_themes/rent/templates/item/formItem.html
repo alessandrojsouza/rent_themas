@@ -1,0 +1,17 @@
+{% extends "index.html" %} 
+{% block content %}
+    <div><p></p></div>
+    <h1>Cadastro de Item</h1>
+    <hr>
+        <form action="/saveItem/" method="post">
+            {% csrf_token %}
+            <label for="">Nome</label>
+            <input type="text" size="50" name="name">
+            <label for="">Descrição</label>
+            <input type="text" size="80" name="description">
+        
+            <input type="submit" value="Gravar">
+        </form>
+        <hr>
+        <a href="/listItem">Voltar</a>
+{% endblock %}

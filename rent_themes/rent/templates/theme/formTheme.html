@@ -1,0 +1,18 @@
+{% extends "index.html" %} 
+{% block content %}
+    <div><p></p></div>
+    <h1>Cadastro de Temas</h1>
+    <hr>
+        <form action="/saveTheme/" method="post">
+            {% csrf_token %}
+            <label for="">Nome</label>
+            <input type="text" size="50" name="name">
+            <label for="">Cor</label>
+            <input type="text" size="20" name="color">
+            <label for="">Preço</label>
+            <input type="text" size="20" name="price">
+            <input type="submit" value="Gravar">
+        </form>
+        <hr>
+        <a href="/listTheme">Voltar</a>
+{% endblock %}

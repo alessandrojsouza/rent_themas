@@ -1,21 +1,33 @@
 from django.urls import path
 
-from . import views
+from .views import index, ClientViews, ThemeViews, ItemViews
 
 urlpatterns= [
-    #URLs para CDU Cliente
-    path('', views.index),
-    path('formClient/', views.formClient),
-    path('saveClient/', views.saveClient),
-    path('deleteClient/<int:id>', views.deleteClient),
-    path('detailClient/<int:id>', views.detailClient),
-    path('updateClient/<int:id>', views.updateClient),
 
-    #URLs para CDU Itens
+    #URLs para página principal
+    path('', index),
 
+    #URLs para CDUs Cliente
+    path('listClient/',           ClientViews.listClient),
+    path('formClient/',           ClientViews.formClient),
+    path('saveClient/',           ClientViews.saveClient),
+    path('deleteClient/<int:id>', ClientViews.deleteClient),
+    path('detailClient/<int:id>', ClientViews.detailClient),
+    path('updateClient/<int:id>', ClientViews.updateClient),
 
-    #URLs para CDU Temas
+    #URLs para CDUs Itens
+    path('listItem/', ItemViews.listItem),
+    path('formItem/', ItemViews.formItem),
+    path('saveItem/', ItemViews.saveItem),
+    path('deleteItem/<int:id>', ItemViews.deleteItem),
+    path('detailItem/<int:id>', ItemViews.detailItem),
+    path('updateItem/<int:id>', ItemViews.updateItem),
 
-
-
+    #URLs para CDUs Temas
+    path('listTheme/', ThemeViews.listTheme),
+    path('formTheme/', ThemeViews.formTheme),
+    path('saveTheme/', ThemeViews.saveTheme),
+    path('deleteTheme/<int:id>', ThemeViews.deleteTheme),
+    path('detailTheme/<int:id>', ThemeViews.detailTheme),
+    path('updateTheme/<int:id>', ThemeViews.updateTheme),
 ]

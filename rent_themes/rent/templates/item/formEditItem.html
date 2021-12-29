@@ -1,0 +1,17 @@
+{% extends "index.html" %} 
+{% block content %}
+    <h1>Atualizar Item</h1>
+    <hr>
+        <form action="/updateItem/{{item.id}}" method="post">
+            {% csrf_token %}
+            <label for="">Nome</label>
+            <input type="text" size="50" name="name" value="{{item.name}}">
+
+            <label for="">Cor</label>
+            <input type="text" size="50" name="description" value="{{item.description}}">
+
+            <input type="submit" value="Gravar">
+        </form>
+        <hr>
+        <a href="/listItem">Voltar</a>
+{% endblock %}

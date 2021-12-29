@@ -1,0 +1,14 @@
+{% extends "index.html" %} 
+    {% block content %}
+    <div><p></p></div>
+    <h1>Cadastro de Clientes</h1>
+    <hr>
+        <form action="/saveClient/" method="post">
+            {% csrf_token %}
+            <label for="">Nome</label>
+            <input type="text" size="50" name="name">
+            <input type="submit" value="Gravar">
+        </form>
+        <hr>
+        <a href="/listClient">Voltar</a>
+{% endblock %}
