@@ -52,13 +52,24 @@ class ThemeViews:
         context = {'theme_list': themes_list}
         return render(request, 'theme/listTheme.html', context)
 
-    #Redirecionador para o formulário de cadastro de temas
+    #Redirecionador para o formulário de cadastro de temas com itens existentes
     def formTheme(request):
-        return render(request, 'theme/formTheme.html')
+        list_item = Item.objects.all()
+        return render(request, 'theme/formTheme.html', {'list_item':list_item})
 
     #Salva o novo tema e volta para listagem de temas
     def saveTheme(request):
-        t = Theme(name=request.POST['name'], color=request.POST['color'], price=request.POST['price'])
+        t = Theme(name=request.POST['name'], 
+                    color=request.POST['color'], 
+                    price=request.POST['price'],
+                    )
+        t.save()
+        my_list = request.POST.getlist('item')
+
+        for i in my_list:
+            item = Item.objects.get(id=i)
+            t.itens.add(item)
+            print("item adicionado ###################")
         t.save()
         return redirect('/listTheme')
     

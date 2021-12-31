@@ -12,6 +12,14 @@
             <label for="">Preço</label>
             <input type="text" size="20" name="price">
             <input type="submit" value="Gravar">
+            <hr>
+            <p>Escolha os itens do tema</p>
+            {% for item in list_item %}
+                {% if item%}            
+                    <input type="checkbox" name="item" value="{{item.id}}" id="">
+                    <label for="item_name">{{item.name}}</label>
+                {% endif%}
+            {% endfor %}
         </form>
         <hr>
         <a href="/listTheme">Voltar</a>

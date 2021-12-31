@@ -8,12 +8,21 @@
             <input type="text" size="50" name="name" value="{{theme.name}}">
 
             <label for="">Cor</label>
-            <input type="text" size="50" name="color" value="{{theme.color}}">
+            <input type="text" size="20" name="color" value="{{theme.color}}">
 
             <label for="">Preço (R$)</label>
-            <input type="text" size="50" name="price" value="{{theme.price}}">
+            <input type="text" size="20" name="price" value="{{theme.price}}">
             
             <input type="submit" value="Gravar">
+
+            <hr>
+            <p>Escolha os itens do tema</p>
+            {% for item in theme.itens.all %}
+                {% if item%}            
+                    <input type="checkbox" name="item" value="{{item.id}}" id="" checked>
+                    <label for="item_name">{{item.name}}</label>
+                {% endif%}
+            {% endfor %}
         </form>
         <hr>
         <a href="/listTheme">Voltar</a>
