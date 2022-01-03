@@ -1,0 +1,17 @@
+{% extends "index.html" %} 
+{% block content %}
+    <h1>Atualizar Aluguel</h1>
+    <hr>
+        <form action="/updateRent/{{rent.id}}" method="post">
+            {% csrf_token %}
+            <label for="">Data</label>
+            <input type="date" name="date" value="{{rent.date|date:'Y-m-d'}}">
+            <label for="">Hora Início</label>
+            <input type="time" name="start_hours" value="{{rent.start_hours}}">
+            <label for="">Hora Fim</label>
+            <input type="time" name="end_hours" value="{{rent.end_hours}}">
+            <input type="submit" value="Gravar">
+        </form>
+        <hr>
+        <a href="/listRent">Voltar</a>
+{% endblock %}

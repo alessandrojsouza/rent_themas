@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import index, ClientViews, ThemeViews, ItemViews
+from .views import index, ClientViews, ThemeViews, ItemViews, RentViews
 
 urlpatterns= [
 
@@ -8,9 +8,9 @@ urlpatterns= [
     path('', index),
 
     #URLs para CDUs Cliente
-    path('listClient/',           ClientViews.listClient),
-    path('formClient/',           ClientViews.formClient),
-    path('saveClient/',           ClientViews.saveClient),
+    path('listClient/', ClientViews.listClient),
+    path('formClient/', ClientViews.formClient),
+    path('saveClient/', ClientViews.saveClient),
     path('deleteClient/<int:id>', ClientViews.deleteClient),
     path('detailClient/<int:id>', ClientViews.detailClient),
     path('updateClient/<int:id>', ClientViews.updateClient),
@@ -30,4 +30,12 @@ urlpatterns= [
     path('deleteTheme/<int:id>', ThemeViews.deleteTheme),
     path('detailTheme/<int:id>', ThemeViews.detailTheme),
     path('updateTheme/<int:id>', ThemeViews.updateTheme),
+
+    #URLs para CDUs Temas
+    path('listRent/', RentViews.listRent),
+    path('formRent/', RentViews.formRent),
+    path('saveRent/', RentViews.saveRent),
+    path('deleteRent/<int:id>', RentViews.deleteRent),
+    path('detailRent/<int:id>', RentViews.detailRent),
+    path('updateRent/<int:id>', RentViews.updateRent),
 ]

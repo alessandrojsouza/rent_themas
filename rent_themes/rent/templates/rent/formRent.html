@@ -1,0 +1,37 @@
+{% extends "index.html" %} 
+{% block content %}
+    <div><p></p></div>
+    <h1>Cadastro de Aluguel</h1>
+    <hr>
+        <form action="/saveRent/" method="post">
+            {% csrf_token %}
+            <label for="">Data</label>
+            <input type="date" name="date">
+            <label for="">Hora Início</label>
+            <input type="time" name="start_hours">
+            <label for="">Hora Fim</label>
+            <input type="time" name="end_hours">
+            <p>
+            <p>Escolha do tema</p>
+            <select name="select_theme" id="">
+                {% for theme in theme_list %}
+                    {% if theme%}            
+                            <option value="{{theme.id}}">{{theme.name}}</option>
+                    {% endif%}
+                {% endfor %}
+            </select>    
+            <p>
+            <p>Escolha do Cliente</p>
+            <select name="select_client" id="">
+                {% for client in client_list %}
+                    {% if client%}            
+                            <option value="{{client.id}}">{{client.name}}</option>
+                    {% endif%}
+                {% endfor %}
+            </select>    
+            <p></p>
+            <input type="submit" value="Gravar">
+        </form>
+        <hr>
+        <a href="/listRent">Voltar</a>
+{% endblock %}

@@ -1,14 +1,14 @@
 from django.shortcuts import redirect, render
-from .models import Client, Item, Theme
+from .models import *
 
-
-### ######## ###### VIEWS PARA CDU CLIENTES ####### ##### ####
 
 #Página inicial com a lista de clientes
 def index(request):
     clients_list = Client.objects.all()
     context = {'clients_list': clients_list}
     return render(request, 'index.html', context)
+
+### ### ### ### ### ## VIEWS PARA CDU CLIENTE ## ### ### ### ### ###
 class ClientViews:
 
     def listClient(request):
@@ -69,7 +69,6 @@ class ThemeViews:
         for i in my_list:
             item = Item.objects.get(id=i)
             t.itens.add(item)
-            print("item adicionado ###################")
         t.save()
         return redirect('/listTheme')
     
@@ -130,3 +129,50 @@ class ItemViews:
         i.description = request.POST['description']
         i.save()
         return redirect('/listItem')
+
+### ### ### ### ### ## VIEWS PARA CDU ALUGUEIS ## ### ### ### ### ###
+class RentViews:
+    
+    #Recupera a lista de aluguéis cadastrados
+    def listRent(request):
+        rent_list = Rent.objects.all()
+        context = {'rent_list': rent_list}
+        return render(request, 'rent/listRent.html', context) 
+    
+    #Redirecionador para o formulário de cadastro de aluguel
+    def formRent(request):
+        client_list = Client.objects.all()
+        theme_list = Theme.objects.all()
+        context = {'client_list':client_list, 'theme_list': theme_list}
+        return render(request, 'rent/formRent.html', context)
+    
+    #Salva o novo aluguel e volta para listagem de alugueis
+    def saveRent(request):
+        r = Rent(date=request.POST['date'], 
+                 start_hours=request.POST['start_hours'],
+                 end_hours=request.POST['end_hours'],
+                 client_id= request.POST['select_client'],
+                 theme_id = request.POST['select_theme'])
+        r.save()
+        return redirect('/listRent')
+
+    #Deleta um aluguel e volta para listagem de alugueis
+    def deleteRent(request, id):
+        i = Rent.objects.get(pk=id)
+        i.delete()
+        return redirect('/listRent')
+    
+    #Pega um aluguel pelo ID e enviar para o form de edição
+    def detailRent(request, id):
+        rent = Rent.objects.get(pk=id)
+        return render(request, 'rent/formEditRent.html', {'rent': rent})
+    
+    #Atualiza um item e volta para listagem
+    def updateRent(request, id):
+        i = Rent.objects.get(pk=id)
+        i.date = request.POST['date']
+        i.start_hours=request.POST['start_hours']
+        print(request.POST['end_hours'])
+        i.end_hours=request.POST['end_hours']
+        i.save()
+        return redirect('/listRent')

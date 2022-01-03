@@ -1,0 +1,26 @@
+{% extends "index.html" %} 
+    {% block content %}
+    <p></p>
+        <h1>Lista de Alugueis</h1>
+        <hr>
+        <table>
+            {% if rent_list %}
+                {% for rent in rent_list%}
+                    <tr>
+                        <td width='15'>{{rent.id}}</td>
+                        <td width='170'>{{rent.theme.name}}</td>
+                        <td width='170'>{{rent.client.name}}</td>
+                        <td width='170'>{{rent.date}}</td>
+                        <td width='170'>{{rent.start_hours}}</td>
+                        <td width='170'>{{rent.end_hours}}</td>
+                        <td width='70'><a href="/deleteRent/{{rent.id}}">Excluir</a></td>
+                        <td><a href="/detailRent/{{rent.id}}">Editar</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum item cadastrado!!</p>
+            {%endif%}
+        </table>
+        <hr>
+        <a href="/formRent">Novo Aluguel</a>
+    {% endblock %}
