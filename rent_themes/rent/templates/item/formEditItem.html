@@ -1,17 +1,26 @@
 {% extends "index.html" %} 
 {% block content %}
-    <h1>Atualizar Item</h1>
+    <div><p></p></div>
+    <h3>Atualizar Item</h3>
     <hr>
         <form action="/updateItem/{{item.id}}" method="post">
             {% csrf_token %}
-            <label for="">Nome</label>
-            <input type="text" size="50" name="name" value="{{item.name}}">
-
-            <label for="">Cor</label>
-            <input type="text" size="50" name="description" value="{{item.description}}">
-
-            <input type="submit" value="Gravar">
+            <div class="row mb-3">
+                <label class="col-sm-1" for="">Nome</label>
+                <div class="col-sm-11">
+                    <input type="text" size="50" name="name" value="{{item.name}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-1" for="">Descrição</label>
+                <div class="col-sm-11">
+                    <textarea  type="text" cols="53" name="description" value=""> {{item.description}}</textarea>
+                    
+                </div>
+            </div>
+            <hr>
+            <a class="btn btn-secondary btn-sm" href="/listItem">Voltar</a>
+            <input class="btn btn-primary" type="submit" value="Gravar">
         </form>
-        <hr>
-        <a href="/listItem">Voltar</a>
+        
 {% endblock %}

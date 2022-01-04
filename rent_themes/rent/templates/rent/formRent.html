@@ -1,37 +1,60 @@
 {% extends "index.html" %} 
 {% block content %}
     <div><p></p></div>
-    <h1>Cadastro de Aluguel</h1>
+    <h3>Cadastro de Aluguel</h3>
     <hr>
         <form action="/saveRent/" method="post">
             {% csrf_token %}
-            <label for="">Data</label>
-            <input type="date" name="date">
-            <label for="">Hora Início</label>
-            <input type="time" name="start_hours">
-            <label for="">Hora Fim</label>
-            <input type="time" name="end_hours">
-            <p>
-            <p>Escolha do tema</p>
-            <select name="select_theme" id="">
-                {% for theme in theme_list %}
-                    {% if theme%}            
-                            <option value="{{theme.id}}">{{theme.name}}</option>
-                    {% endif%}
-                {% endfor %}
-            </select>    
-            <p>
-            <p>Escolha do Cliente</p>
-            <select name="select_client" id="">
-                {% for client in client_list %}
-                    {% if client%}            
-                            <option value="{{client.id}}">{{client.name}}</option>
-                    {% endif%}
-                {% endfor %}
-            </select>    
-            <p></p>
-            <input type="submit" value="Gravar">
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="date">Data</label>
+                <div class="col-sm-11">
+                    <input id="date" type="date" name="date">
+                </div>
+            </div> 
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="start">Hora Início</label>
+                <div class="col-sm-11">
+                    <input id="start" type="time" name="start_hours">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="end">Hora Fim</label>
+                <div id="end" class="col-sm-11">
+                    <input type="time" name="end_hours">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="end">Tema</label>
+                <div class="col-sm-5">
+                    <select class="form-select" name="select_theme" id="">
+                        {% for theme in theme_list %}
+                            {% if theme%}            
+                                    <option value="{{theme.id}}">{{theme.name}}</option>
+                            {% endif%}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="end">Cliente</label>
+                <div class="col-sm-5">
+                    <select  class="form-select" name="select_client" id="">
+                        {% for client in client_list %}
+                            {% if client%}            
+                                    <option value="{{client.id}}">{{client.name}}</option>
+                            {% endif%}
+                        {% endfor %}
+                    </select> 
+                </div>
+            </div>
+            <hr>
+            <a class="btn btn-secondary btn-sm" href="/listRent">Voltar</a>
+            <input class="btn btn-primary" type="submit" value="Gravar">
         </form>
-        <hr>
-        <a href="/listRent">Voltar</a>
+        
+        
 {% endblock %}

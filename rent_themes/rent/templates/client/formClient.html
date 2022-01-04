@@ -5,12 +5,15 @@
     <hr>
         <form action="/saveClient/" method="post">
             {% csrf_token %}
-            <div class="form-group">
-                <label  for="name">Nome</label>
-                <input type="text" id="name" size="50" name="name"> 
-                <input class="btn btn-primary" type="submit" value="Gravar">
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="name">Nome</label>
+                <div class="col-sm-11">
+                    <input type="text" id="name" size="50" name="name"> 
+                </div>
             </div> 
+            <hr>
+            <a class="btn btn-secondary btn-sm" href="/listClient">Voltar</a>
+            <input class="btn btn-primary" type="submit" value="Gravar">
         </form>
-        <hr>
-        <a href="/listClient">Voltar</a>
+        
     {% endblock %}
