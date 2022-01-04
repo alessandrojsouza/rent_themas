@@ -1,15 +1,23 @@
 {% extends "index.html" %} 
     {% block content %}
     <p></p>
-        <h1>Lista de Temas</h1>
+        <h3>Lista de Temas</h3>
         <hr>
-        <table>
+        <table class="table table-striped"> 
             {% if theme_list %}
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Ações</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
                 {% for theme in theme_list%}
                     <tr>
-                        <td width='15'>{{theme.id}}</td>
-                        <td width='170'>{{theme.name}}</td>
-                        <td width='70'><a href="/deleteTheme/{{theme.id}}">Excluir</a></td>
+                        <td>{{theme.id}}</td>
+                        <td>{{theme.name}}</td>
+                        <td width='80'><a href="/deleteTheme/{{theme.id}}">Excluir</a></td>
                         <td><a href="/detailTheme/{{theme.id}}">Editar</a></td>
                     </tr>
                 {% endfor %}
@@ -18,5 +26,5 @@
             {%endif%}
         </table>
         <hr>
-        <a href="/formTheme">Novo Tema</a>
+        <a class="btn btn-primary" href="/formTheme">Novo Tema</a>
     {% endblock %}

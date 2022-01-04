@@ -1,25 +1,44 @@
 {% extends "index.html" %} 
 {% block content %}
     <div><p></p></div>
-    <h1>Cadastro de Temas</h1>
+    <h3>Cadastro de Temas</h3>
     <hr>
         <form action="/saveTheme/" method="post">
             {% csrf_token %}
-            <label for="">Nome</label>
-            <input type="text" size="50" name="name">
-            <label for="">Cor</label>
-            <input type="text" size="20" name="color">
-            <label for="">Preço</label>
-            <input type="text" size="20" name="price">
-            <input type="submit" value="Gravar">
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="name">Nome</label>
+                <div class="col-sm-11">
+                    <input id="name" type="text" size="50" name="name">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="">Cor</label>
+                <div class="col-sm-11">
+                    <input type="text" size="20" name="color">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="">Preço</label>
+                <div class="col-sm-11">
+                    <input type="text" size="20" name="price">
+                    <input class="btn btn-primary" type="submit" value="Gravar">
+                </div>
+                
+            </div>
             <hr>
-            <p>Escolha os itens do tema</p>
-            {% for item in list_item %}
-                {% if item%}            
-                    <input type="checkbox" name="item" value="{{item.id}}" id="">
-                    <label for="item_name">{{item.name}}</label>
-                {% endif%}
-            {% endfor %}
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-1 pt-0">Itens Tema</legend>
+                <div class="col-sm-11">
+                    {% for item in list_item %}
+                        {% if item%}   
+                            <div class="form-check">         
+                                <input id="{{item.id}}" class="form-check-input" type="checkbox" name="item" value="{{item.id}}">
+                                <label for="{{item.id}}">{{item.name}}</label>
+                            </div>
+                        {% endif%}
+                    {% endfor %}
+                </div>
+            </fieldset>
         </form>
         <hr>
         <a href="/listTheme">Voltar</a>

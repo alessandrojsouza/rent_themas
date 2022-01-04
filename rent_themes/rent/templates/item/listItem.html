@@ -1,16 +1,25 @@
 {% extends "index.html" %} 
     {% block content %}
     <p></p>
-        <h1>Lista de Itens</h1>
+        <h3>Lista de Itens</h3>
         <hr>
-        <table>
+        <table class="table table-striped">
             {% if item_list %}
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Ações</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
                 {% for item in item_list%}
                     <tr>
-                        <td width='15'>{{item.id}}</td>
-                        <td width='170'>{{item.name}}</td>
-                        <td width='170'>{{item.description}}</td>
-                        <td width='70'><a href="/deleteItem/{{item.id}}">Excluir</a></td>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.description}}</td>
+                        <td width='80'><a href="/deleteItem/{{item.id}}">Excluir</a></td>
                         <td><a href="/detailItem/{{item.id}}">Editar</a></td>
                     </tr>
                 {% endfor %}
@@ -19,5 +28,5 @@
             {%endif%}
         </table>
         <hr>
-        <a href="/formItem">Novo Item</a>
+        <a class="btn btn-primary" href="/formItem">Novo Item</a>
     {% endblock %}
