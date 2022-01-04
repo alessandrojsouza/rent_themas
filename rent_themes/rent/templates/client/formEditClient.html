@@ -1,12 +1,15 @@
 {% extends "index.html" %} 
 {% block content %}
-    <h1>Atualizar Clientes</h1>
+    <div><p></p></div>
+    <h3>Atualizar Clientes</h3>
     <hr>
         <form action="/updateClient/{{client.id}}" method="post">
             {% csrf_token %}
-            <label for="">Nome</label>
-            <input type="text" size="50" name="name" value="{{client.name}}">
-            <input type="submit" value="Gravar">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input id="name" type="text" size="50" name="name" value="{{client.name}}">
+                <input class="btn btn-primary" type="submit" value="Gravar">
+            </div>
         </form>
         <hr>
         <a href="/listClient">Voltar</a>
