@@ -15,7 +15,7 @@ class Phone(models.Model):
     client = models.ForeignKey('Client', on_delete=models.CASCADE, related_name='phones')
     
     def __str__(self):
-        return self.client.name+ ' ' + self.number
+        return self.client.name + ' ' + self.ddd + ' '+ self.number
     
     
 class Theme(models.Model):

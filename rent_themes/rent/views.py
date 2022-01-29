@@ -4,13 +4,11 @@ from .models import *
 
 #Página inicial com a lista de clientes
 def index(request):
-    clients_list = Client.objects.all()
-    context = {'clients_list': clients_list}
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
 
 ### ### ### ### ### ## VIEWS PARA CDU CLIENTE ## ### ### ### ### ###
 class ClientViews:
-
+    # Apresenta a lista de clientes no template listClient.html
     def listClient(request):
         clients_list = Client.objects.all()
         context = {'clients_list': clients_list}
@@ -22,8 +20,23 @@ class ClientViews:
 
     #Salva o novo cliente e volta para listagem de clientes
     def saveClient(request):
-        c = Client(name=request.POST['name'])
+        c = Client(name=request.POST['name'],
+                   email=request.POST['email'])
         c.save()
+        
+        if(request.POST['ddd1']!=''):
+            t1 = Phone(ddd=request.POST['ddd1'],
+                   number=request.POST['phone1'],
+                   client=c)
+            t1.save()
+            
+        if(request.POST['ddd2']!=''):
+            t2 = Phone(ddd=request.POST['ddd2'],
+                   number=request.POST['phone2'],
+                   client=c)
+            t2.save()
+            
+        
         return redirect('/listClient')
 
     #Deleta um cliente e volta para listagem de clientes
@@ -41,7 +54,33 @@ class ClientViews:
     def updateClient(request, id):
         c = Client.objects.get(pk=id)
         c.name = request.POST['name']
+        c.email = request.POST['email']
         c.save()
+        #phones = Phone.objects.filter(client = c)
+        if(request.POST['ddd1']!='' and request.POST['phone1']!='' ):
+            if(c.phones.first()):
+                t1 = c.phones.first()
+                t1.ddd = request.POST['ddd1']
+                t1.number = request.POST['phone1']
+                t1.save()
+            else: 
+                t1 = Phone(ddd=request.POST['ddd1'],
+                number=request.POST['phone1'],
+                client=c)
+                t1.save()
+                      
+        if(request.POST['ddd2']!='' and request.POST['phone2']!=''):
+            if(c.phones.last() and c.phones.count()>1):
+                t2 = c.phones.last()
+                t2.ddd = request.POST['ddd2']
+                t2.number =request.POST['phone2']
+                t2.save()
+            else: 
+                t2 = Phone(ddd=request.POST['ddd2'],
+                number=request.POST['phone2'],
+                client=c)
+                t2.save()    
+            
         return redirect('/listClient')
 
 ### ### ### ### ### ## VIEWS PARA CDU TEMAS ## ### ### ### ### ###
