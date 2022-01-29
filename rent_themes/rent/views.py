@@ -187,11 +187,20 @@ class RentViews:
     
     #Salva o novo aluguel e volta para listagem de alugueis
     def saveRent(request):
+        a = Address(street = request.POST['street'],
+                 number = request.POST['number'],
+                 complement = request.POST['complement'], 
+                 district = request.POST['district'],
+                 city = request.POST['city'],
+                 state = request.POST['state'] )
+        a.save()
+        
         r = Rent(date=request.POST['date'], 
                  start_hours=request.POST['start_hours'],
                  end_hours=request.POST['end_hours'],
                  client_id= request.POST['select_client'],
-                 theme_id = request.POST['select_theme'])
+                 theme_id = request.POST['select_theme'],
+                 address = a )
         r.save()
         return redirect('/listRent')
 
@@ -211,7 +220,6 @@ class RentViews:
         i = Rent.objects.get(pk=id)
         i.date = request.POST['date']
         i.start_hours=request.POST['start_hours']
-        print(request.POST['end_hours'])
         i.end_hours=request.POST['end_hours']
         i.save()
         return redirect('/listRent')
