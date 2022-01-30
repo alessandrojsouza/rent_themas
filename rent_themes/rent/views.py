@@ -217,9 +217,32 @@ class RentViews:
     
     #Atualiza um item e volta para listagem
     def updateRent(request, id):
-        i = Rent.objects.get(pk=id)
-        i.date = request.POST['date']
-        i.start_hours=request.POST['start_hours']
-        i.end_hours=request.POST['end_hours']
-        i.save()
+        r = Rent.objects.get(pk=id)
+        r.date = request.POST['date']
+        r.start_hours = request.POST['start_hours']
+        r.end_hours = request.POST['end_hours']
+        
+        addr = r.address
+        
+        if not addr:
+            addr = Address(street = request.POST['street'],
+                number = int(request.POST['number']),
+                complement = request.POST['complement'],
+                district = request.POST['district'],
+                city = request.POST['city'],
+                state = request.POST['state'])
+            
+            print('novo endereco')
+        else:
+            print(r.address)
+            addr.street = request.POST['street']
+            addr.number = int(request.POST['number'])
+            addr.complement = request.POST['complement']
+            addr.district = request.POST['district']
+            addr.city = request.POST['city']
+            addr.state = request.POST['state']
+            print('endereco atualizado')
+        addr.save()
+        r.address = addr
+        r.save()
         return redirect('/listRent')

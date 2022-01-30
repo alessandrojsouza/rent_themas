@@ -25,6 +25,49 @@
                     <input id="end" type="time" name="end_hours" value="{{rent.end_hours}}">
                 </div>
             </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="street">Endereço</label>
+                <div class="col-sm-11">
+                    <input id="street" size="66" type="text" name="street" value="{{rent.address.street}}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="number">Número</label>
+                <div class="col-sm-11">
+                    <input id="number"  type="text" name="number" value="{{rent.address.number}}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="complement">Complemento</label>
+                <div class="col-sm-11">
+                    <input id="complement" size="66" type="text" name="complement" value="{{rent.address.complement}}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="district">Bairro</label>
+                <div class="col-sm-11">
+                    <input id="district" size="66" type="text" name="district" value="{{rent.address.district}}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="city">Cidade</label>
+                <div class="col-sm-11">
+                    <input id="city" size="20" type="text" name="city" value="{{rent.address.city}}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-1 col-form-label"  for="state">Estado</label>
+                <div class="col-sm-11">
+                    <input id="state" size="20" type="text" name="state" value="{{rent.address.state}}">
+                </div>
+            </div>
+
             <hr>
             <a class="btn btn-secondary btn-sm" href="/listRent">Voltar</a>    
             <input class="btn btn-primary" type="submit" value="Gravar">
