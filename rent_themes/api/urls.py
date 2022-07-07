@@ -4,14 +4,14 @@ from .views import *
 
 #ViewSets routers
 router = DefaultRouter()
-router.register('themes',ThemeViewSet)
-router.register('clients', ClientViewSet)
+#router.register('clients', ClientViewSet)
 router.register('itens', ItemViewSet)
 router.register('rents', RentViewSet)
+router.register('phone', PhoneViewSet)
 
 #URLs view
 urlpatterns = [
-     # path('', view_metodo),
+      path('clients/', ClientViewSet.as_view()),
 ]
 
 urlpatterns += router.urls
