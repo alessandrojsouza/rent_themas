@@ -2,3 +2,4 @@ venv
 rent_themes/rent/migrations
 rent_themes/api/__pycache__
 rent_themes/rent/__pycache__
+rent_themes/rent_themes/__pycache__
