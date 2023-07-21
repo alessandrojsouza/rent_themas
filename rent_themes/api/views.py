@@ -27,4 +27,5 @@ class PhoneByClient_IdViewSet(viewsets.ModelViewSet):
     pass
 
 class AddressByRent_IdViewSet(viewsets.ModelViewSet):
-    pass
+    queryset = Address.objects.all()
+    serializer_class = AddressSerializer

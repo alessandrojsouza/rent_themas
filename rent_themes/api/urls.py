@@ -8,6 +8,7 @@ router.register('themes',ThemeViewSet)
 router.register('clients', ClientViewSet)
 router.register('itens', ItemViewSet)
 router.register('rents', RentViewSet)
+router.register('Address', AddressByRent_IdViewSet)
 
 #URLs view
 urlpatterns = [
